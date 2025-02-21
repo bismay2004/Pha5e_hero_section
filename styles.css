@@ -1,0 +1,398 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #0d0d0d;
+    color: white;
+    /* Remove overflow: hidden; to allow scrolling */
+    overflow-x: hidden; /* Optional: Prevent horizontal scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Splash Screen with only 'PHA5E' */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1s ease-in-out 4s forwards;
+    z-index: 1000; /* Ensure splash screen is on top */
+}
+
+.pha5e-logo {
+    font-size: 12vw;
+    font-weight: 900;
+    letter-spacing: 10px;
+    opacity: 0;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    animation: typing 4s forwards, fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+/* Smooth Typing Animation */
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade-out animation for splash screen */
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* Navbar Container */
+.navbar {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.2); /* Transparent Background */
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+/* Home Button (PHA5E in Top-Left Corner) */
+.home-button {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    font-size: 2vw;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.home-button:hover {
+    background: rgba(0, 0, 0, 0.3);
+    color: #721dfa;
+    transform: scale(1.1);
+}
+
+/* Navigation Menu (Top-Right) */
+.nav-links {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+    z-index: 1000;
+    
+}
+
+.nav-links a {
+    font-size: 1.2vw;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: #7e24e5;
+}
+
+/* Language Toggle Button */
+.language-toggle {
+    font-weight: bold;
+    padding: 5px 15px;
+    border: 2px solid white;
+}
+/* Hamburger Menu Icon (Only for Mobile) */
+.menu-icon {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    font-size: 2vw;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Hide Navigation by Default on Mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: right;
+        z-index: 1002;
+    }
+
+    .nav-links a {
+        font-size: 3vw;
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 5px 10px;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    /* Show Navigation When 'show' Class is Added */
+    .nav-links.show {
+        display: flex;
+    }
+}
+
+/* Main content (hidden initially) */
+#main-content {
+    display: none;
+    width: 100%; /* Ensure main content takes full width */
+    height: auto; /* Allow content to grow vertically */
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Use min-height instead of height */
+    text-align: center;
+}
+
+.container {
+    position: relative;
+}
+
+.hero-title {
+    padding-top: 5vh;
+    font-size: 8vw;
+    opacity: 0;
+    font-weight: 800;
+    text-shadow: 2px 2px 2px #464646;
+    max-width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 0.9;
+    word-wrap: break-word;
+    display: block;
+    position: relative;
+    z-index: 10; /* Keeps text above images */
+    pointer-events: none; /* Allows mouse events to pass through to images */
+    
+    
+}
+
+
+
+.hero-subtitle {
+    font-size: 2vw;
+    opacity: 0;
+}
+
+.image-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevents images from blocking text interaction */
+}
+
+.hero-image {
+    position: absolute;
+    width: 350px; /* Adjust size */
+    height: auto;
+    filter: brightness(0.8);
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center;
+    pointer-events: auto; /* Allow hover interactions */
+    
+   
+    
+    
+
+}
+/* Positioning images */
+.hero-image:nth-child(1) {
+    top: 15%;
+    left: 15%;
+}
+
+.hero-image:nth-child(2) {
+    top: -5%;
+    right: 25%;
+}
+
+.hero-image:nth-child(3) {
+    bottom: 3%;
+    left: 21%;
+}
+
+.hero-image:nth-child(4) {
+    bottom: 12%;
+    right: 17%;
+}
+
+
+
+
+/* Hover Effect */
+.hero-image:hover {
+    transform: scale(1.1);
+    filter: brightness(1);
+    box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.2);
+    transform: scale(1.12);
+    
+}
+
+
+@media (max-width: 768px) {
+    .hero-image {
+        width: 40vw;  /* Adjust image width */
+        height: auto;
+        max-width: 100%;
+        transition: transform 0.3s ease-out; /* Smooth movement */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        width: 40vw;  /* Increase size for smaller screens */
+        height: auto;
+        max-width: 100%;
+        transition: transform 0.3s ease-out;
+    }
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .hero-title {
+        padding-top: 8vh;
+        font-size: 50px;
+        max-width: 50%;
+        line-height: 1.1;
+        white-space: normal;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        padding-top: 6vh;
+        font-size: 50px;
+        max-width: 50%;
+        white-space: normal;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.1;
+        
+    }
+}
+/* Adjustments for mobile screens */
+@media (max-width: 480px) {
+    .hero-image:nth-child(1) {
+        top: 5%;
+        left: 5%;
+    }
+
+    .hero-image:nth-child(2) {
+        top: 5%;
+        right: 10%;
+    }
+
+    .hero-image:nth-child(3) {
+        bottom: 10%;
+        left: 8%;
+    }
+
+    .hero-image:nth-child(4) {
+        bottom: 15%;
+        right: 8%;
+    }
+}
+/* Adjustments for tablets */
+@media (max-width: 768px) {
+    .hero-image:nth-child(1) {
+        top: 10%;
+        left: 5%;
+    }
+
+    .hero-image:nth-child(2) {
+        top: 0;
+        right: 7%;
+    }
+
+    .hero-image:nth-child(3) {
+        bottom: 5%;
+        left: 7%;
+    }
+
+    .hero-image:nth-child(4) {
+        bottom: 8%;
+        right: 9%;
+    }
+}
+/* Initially Hide Navigation & Home Button */
+.home-button,
+.nav-links {
+    display: none;
+}
+
+
+.hero-title {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hero-title.hollow {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3); /* Thin border */
+    opacity: 1;
+}
+.image-label {
+    position: absolute;
+    font-size: 3vw;
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    display: none;
+    pointer-events: none;
+}
