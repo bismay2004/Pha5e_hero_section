@@ -63,17 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Hamburger Menu Toggle
-    const menuIcon = document.querySelector(".menu-icon");
-    const navLinks = document.querySelector(".nav-links");
-
-    if (menuIcon && navLinks) {
-        menuIcon.addEventListener("click", function () {
-            navLinks.classList.toggle("show");
-        });
-    } else {
-        console.error("Menu icon or nav-links not found in the document.");
-    }
+    
 });
 document.addEventListener("DOMContentLoaded", function () {
     const heroImages = document.querySelectorAll(".hero-image");
@@ -160,4 +150,12 @@ document.addEventListener("DOMContentLoaded", function () {
         label.style.left = `${rect.right - 40}px`;  // Position at bottom-right
         label.style.top = `${rect.bottom - 40}px`;
     }
+});
+document.addEventListener("mousemove", (e) => {
+    let x = e.clientX / window.innerWidth * 100;
+    let y = e.clientY / window.innerHeight * 100;
+
+    // Adjust glow effect near the mouse
+    document.documentElement.style.setProperty('--x', x + '%');
+    document.documentElement.style.setProperty('--y', y + '%');
 });
