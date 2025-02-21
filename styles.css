@@ -396,3 +396,54 @@ body, html {
     display: none;
     pointer-events: none;
 }
+body {
+    background: black;
+    overflow: hidden;
+}
+
+body {
+    background: black;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* The glowing effect around the cursor */
+#mouse-effect {
+    position: fixed;
+    width: 60px; /* 2cm approx */
+    height: 60px;
+    background: radial-gradient(circle, 
+        rgba(52, 37, 52, 0.8), /* Neon Pink */
+        rgba(0, 255, 255, 0.7), /* Neon Cyan */
+        rgba(114, 29, 250, 0.6), /* Purple */
+        transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    filter: blur(10px);
+}
+body {
+    background: black;
+    overflow: hidden;
+    transition: background 0.1s linear;
+}
+
+/* Light glow effect that follows the cursor */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--x) var(--y), 
+        rgba(34, 2, 90, 0.4),  /* Purple */
+        rgba(1, 78, 78, 0.3),   /* Cyan */
+        rgba(90, 2, 53, 0.3),   /* Pink */
+        transparent 100%);
+    pointer-events: none;
+    transition: background 0.05s ease-out;
+}
